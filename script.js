@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -28,7 +30,7 @@ function addToCart(title, price, rating, image) {
     } else {
         const item = { title, price, rating, image, quantity: 1 };
         cart.push(item);
-    }e
+    }
     updateCartDisplay();
 }
 
@@ -38,7 +40,7 @@ function updateCartDisplay() {
     if (cartItemsContainer) {
         cartItemsContainer.innerHTML = '';
 
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
             cartItem.innerHTML = `
@@ -47,7 +49,7 @@ function updateCartDisplay() {
                     <div class="movie-info">
                         <h3>${item.title}</h3>
                         <span class="green"><i class="fa-solid fa-star"></i>${item.rating}</span>
-                        <button onclick="removeFromCart()">Remove</button>
+                        <button onclick="removeFromCart(${index})">Remove</button>
                     </div>
                     <div class="price">
                         <p>$ ${item.price}</p>
@@ -61,9 +63,8 @@ function updateCartDisplay() {
 }
 
 
-function removeFromCart() {
+function removeFromCart(indexToRemove) {
 
-    const indexToRemove = 0; // Replace this with the actual index
 
     // Check if the index is valid
     if (indexToRemove >= 0 && indexToRemove < cart.length) {
@@ -88,7 +89,6 @@ function checkout() {
     
     // Assuming you want to move checked out items from cart to orders
     const checkedOutItems = cart.slice(); // Copy the cart items
-    cart = []; // Empty the cart
 
     // Add checked out items to orders
     checkedOutItems.forEach(item => {
@@ -98,12 +98,13 @@ function checkout() {
         }
     });
 
+    cart = []; // Empty the cart
     // Update display for both cart and orders
     updateCartDisplay();
     updateOrdersDisplay();
 
     // Save the updated cart and orders to local storage
-    saveCartToLocalStorage();
+    
     saveOrdersToLocalStorage();
 
     // Perform any additional actions related to checkout
