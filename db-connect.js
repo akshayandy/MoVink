@@ -14,7 +14,7 @@ const pool = new Pool({
 
 module.exports = pool;
 
-// // Example query
+// Example query
 // pool.query('SELECT * FROM movies_data', (err, res) => {
 //   if (err) {
 //     console.error('Error executing query', err);
