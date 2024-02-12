@@ -15,20 +15,20 @@
     <main>
         <h1>Sign up</h1>
 
-        <form action="submit">
+        <form>
             <div class="input-box">
-                <label for="NameVal">Your Name: </label>
-                <input type="text" name="" id="NameVal" required placeholder="first and last">
+                <label for="usernameInput">Your Name: </label>
+                <input type="text" name="" id="usernameInput" required placeholder="first and last">
             </div>
             <div class="input-box">
-                <label for="emailVal">Email: </label>
-                <input type="email" name="" id="NameVal" required placeholder="Ex: abc@email.com">
+                <label for="emailInput">Email: </label>
+                <input type="email" name="" id="emailInput" required placeholder="Ex: abc@email.com">
             </div>
             <div class="input-box">
-                <label for="passwordVal">Create Password: </label>
-                <input type="password" name="" id="passwordVal" required minlength="6" maxlength="20" placeholder="min 6 characters">
+                <label for="passwordInput">Create Password: </label>
+                <input type="password" name="" id="passwordInput" required minlength="6" maxlength="20" placeholder="min 6 characters">
             </div>
-                <input type="submit" name="Verify" id="submitBtn" value="Create Account">
+            <button id="registerBtn" onclick="registerUser()">Register</button>
 
             <div class="register-link">
                 <p>Already have an account? <a href="Signin.html">Sign in</a></p>
@@ -40,5 +40,35 @@
     <footer>
 
     </footer>
+    <script>
+        function registerUser() {
+    
+            const usernameInput = document.getElementById("usernameInput").value;
+            const passwordInput = document.getElementById("passwordInput").value;
+            const emailInput = document.getElementById("emailInput").value;
+    
+    
+            let user = {
+                username: usernameInput,
+                password: passwordInput,
+                email: emailInput
+            }
+    
+            console.log(user);
+    
+            let userJSON = JSON.stringify(user);
+            console.log(userJSON);
+    
+            //If we got a Response, then extract the Body of the Response
+            let pretendResponse = JSON.parse(userJSON);
+    
+            console.log(pretendResponse);
+            //Then do something with the Response.
+            //Like check the data, if good, send to login page.
+    
+            alert("Successfully Registered!")
+            window.location.href = "#";
+        }
+    </script>
 </body>
 </html>

@@ -15,16 +15,16 @@
     <main>
         <h1>Sign in</h1>
 
-        <form action="HomePage.html">
+        <form id="signInForm">
             <div class="input-box">
-                <label for="emaiVal">Email: </label>
-                <input type="email" name="" id="emaiVal" required placeholder="Ex: abc@email.com"> 
+                <label for="emailInput">Email: </label>
+                <input type="email" name="" id="emailInput" required placeholder="Ex: abc@email.com"> 
             </div>
             <div class="input-box">
-                <label for="passwordVal">Password: </label>
-                <input type="password" name="" id="passwordVal" required minlength="6" maxlength="20">
+                <label for="passwordInput">Password: </label>
+                <input type="password" name="" id="passwordInput" required minlength="6" maxlength="20">
             </div>
-            <button id="submitBtn">Sign in</button>
+            <button type="submit" id="signInButton">Sign in</button>
         </form>
             <div class="register-link">
                 <p>Don't have an account? <a href="Signup.html">Register</a></p>
@@ -35,5 +35,6 @@
     <footer>
 
     </footer>
+    <!-- <script src="authentication.js"></script> -->
 </body>
 </html>
