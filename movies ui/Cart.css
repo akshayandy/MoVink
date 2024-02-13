@@ -68,14 +68,14 @@ h1{
     border-radius: 10px;
 }
 
-.cart-item .movie-info {
+.cart-item .cart-item-info {
     color: #fff;
     display: flex;
     flex-direction: column; /* Stack movie data vertically */
     flex-grow: 1;
 }
 
-.cart-item h3 {
+.cart-item-info h3 {
     padding-left: 10px;
     margin: 0 0 0.25rem; /* Add bottom margin to separate movie title */
     white-space: nowrap; /* Prevent movie title from wrapping */
@@ -83,7 +83,7 @@ h1{
     text-overflow: ellipsis;
 }
 
-.cart-item span{
+.cart-item-info span{
     background-color: #7077A1;
     padding-left: 10px;
     border-radius: bold;
@@ -91,7 +91,7 @@ h1{
     margin-right: 0.5rem;
 }
 
-.cart-item span i{
+.cart-item-info span i{
     color: gold;
     padding-right: 5px;
 }

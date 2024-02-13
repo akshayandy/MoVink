@@ -1,5 +1,7 @@
+// movies.dao.js
+
 const pool = require('../db-connect');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 
 //Movies
@@ -11,25 +13,52 @@ async function selectAllMovies(){
     return result.rows.map(row => convertMovieData(row));
 }
 
-// users
-async function createUser(username, email, password) {
+// Function to fetch cart data from the database
+async function getCartData() {
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        await pool.query('INSERT INTO users_data (user_name, email, password) VALUES ($1, $2, $3)', [username, email, hashedPassword]);
-        return true; // Return true if user creation is successful
+        const query = `
+            SELECT * FROM cart;`;
+        const result = await pool.query(query);
+
+        return result.rows; // Return the cart data
     } catch (error) {
-        console.error('Error creating user:', error);
-        throw error; // Throw error if user creation fails
+        console.error('Error fetching cart data:', error);
+        throw error;
     }
 }
 
-async function findUserByEmail(email) {
+// Function to add movie to cart
+async function addToCart(title, price, rating, image) {
     try {
-        const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-        return result.rows[0]; // Return user object if found, or undefined if not found
+        // Perform database query to add movie to cart
+        const query = `
+            INSERT INTO cart (movie_id, title, price, rating, image)
+            VALUES ((SELECT id FROM movies_data WHERE title = $1), $1, $2, $3, $4)
+            RETURNING *;`;
+
+        const values = [title, price, rating, image];
+        const result = await pool.query(query, values);
+
+        return result.rows[0]; // Return the added movie if needed
     } catch (error) {
-        console.error('Error finding user by email:', error);
-        throw error; // Throw error if database query fails
+        console.error('Error adding movie to cart:', error);
+        throw error;
+    }
+}
+
+// Function to remove movie from cart
+async function removeFromCart(movieId) {
+    try {
+        // Perform database query to remove movie from cart by movie ID
+        const query = `
+            DELETE FROM cart
+            WHERE movie_id = $1;`;
+
+        const values = [movieId];
+        await pool.query(query, values);
+    } catch (error) {
+        console.error('Error removing movie from cart:', error);
+        throw error;
     }
 }
 
@@ -49,7 +78,8 @@ function convertMovieData(data){
 }
 
 module.exports = {
+    getCartData : getCartData,
     getAllMovies : selectAllMovies,
-    addUser : createUser,
-    getUser : findUserByEmail
+    addMovie : addToCart,
+    deleteMovie : removeFromCart
 }
