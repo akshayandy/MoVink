@@ -47,8 +47,7 @@ async function fetchCartData() {
         });
     } catch (error) {
         console.error('Error fetching cart data:', error);
-    }
-    
+    }   
 }
 
  // Function to remove movie from cart
