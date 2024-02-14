@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use("/", moviesRoutes);
 app.use("/cart", moviesRoutes);
 app.use("/cart/:movieId", moviesRoutes);
+app.use("/orders", moviesRoutes);
 
 app.listen(port, ()=>{
     console.log(`movies-app is listening on port ${port}`);

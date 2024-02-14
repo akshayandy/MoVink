@@ -9,6 +9,20 @@ moviesRoutes.get('/', async function(req, res){
     res.send(rows);
 })
 
+// Add a route to fetch cart data
+moviesRoutes.get('/cart', async (req, res) => {
+    try {
+        // Your code to fetch cart data from the database
+        const cartData = await movDAO.getCartData(); // Assuming you have a function to fetch cart data in your DAO
+        
+        // Send the cart data in the response
+        res.status(200).json(cartData);
+    } catch (error) {
+        console.error('Error fetching cart data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // Route to add movie to cart
 moviesRoutes.post('/cart', async (req, res) => {
     try {
@@ -25,19 +39,6 @@ moviesRoutes.post('/cart', async (req, res) => {
     }
 });
 
-// Add a route to fetch cart data
-moviesRoutes.get('/cart', async (req, res) => {
-    try {
-        // Your code to fetch cart data from the database
-        const cartData = await movDAO.getCartData(); // Assuming you have a function to fetch cart data in your DAO
-        
-        // Send the cart data in the response
-        res.status(200).json(cartData);
-    } catch (error) {
-        console.error('Error fetching cart data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
 
 // Route to remove movie from cart
 moviesRoutes.delete('/cart/:movieId', async (req, res) => {
@@ -54,5 +55,20 @@ moviesRoutes.delete('/cart/:movieId', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+// Add a route to fetch orders data
+moviesRoutes.get('/orders', async (req, res) => {
+    try {
+        // Your code to fetch orders data from the database
+        const ordersData = await movDAO.getOrdersData(); // Assuming you have a function to fetch orders data in your DAO
+        
+        // Send the orders data in the response
+        res.status(200).json(ordersData);
+    } catch (error) {
+        console.error('Error fetching orders data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 module.exports = moviesRoutes

@@ -43,7 +43,6 @@ async function fetchCartData() {
                 </div>
             `;
             cartItemsContainer.appendChild(cartItemElement);
-            console.log(item.movie_id)
         });
     } catch (error) {
         console.error('Error fetching cart data:', error);
@@ -67,6 +66,10 @@ async function fetchCartData() {
     } catch (error) {
         console.error('Error removing movie from cart:', error);
     }
+}
+
+async function checkoutCart() {
+    console.log("Checkout complete..!")
 }
 
 

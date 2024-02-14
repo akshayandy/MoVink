@@ -62,6 +62,20 @@ async function removeFromCart(movieId) {
     }
 }
 
+
+async function getOrdersData() {
+    try {
+        const query = `
+            SELECT * FROM orders;`;
+        const result = await pool.query(query);
+
+        return result.rows; // Return the orders data
+    } catch (error) {
+        console.error('Error fetching orders data:', error);
+        throw error;
+    }
+}
+
 //-----------------------------------------------------------------////
 function convertMovieData(data){
     if (!data || data == Object.keys(data).length === 0) {
@@ -81,5 +95,6 @@ module.exports = {
     getCartData : getCartData,
     getAllMovies : selectAllMovies,
     addMovie : addToCart,
-    deleteMovie : removeFromCart
+    deleteMovie : removeFromCart,
+    getOrdersData : getOrdersData
 }
