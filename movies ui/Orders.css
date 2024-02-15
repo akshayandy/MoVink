@@ -29,10 +29,15 @@ h1{
     list-style-type: none;
 }
 
-.navigation ul a {
+.navigation ul a{
     padding-right: 10px;
     padding-left: 10px;
     color: #fff;
+    transition: 0.5s;
+}
+
+.navigation ul a:hover{
+    color: #F6B17A;
 }
 
 .orders-item {

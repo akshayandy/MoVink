@@ -15,20 +15,20 @@
     <main>
         <h1>Sign up</h1>
 
-        <form>
+        <form id="signup-form">
             <div class="input-box">
-                <label for="usernameInput">Your Name: </label>
-                <input type="text" name="" id="usernameInput" required placeholder="first and last">
+                <label for="username">Your Name: </label>
+                <input type="text" id="username" required placeholder="first and last">
             </div>
             <div class="input-box">
-                <label for="emailInput">Email: </label>
-                <input type="email" name="" id="emailInput" required placeholder="Ex: abc@email.com">
+                <label for="email">Email: </label>
+                <input type="email" id="email" required placeholder="Ex: abc@email.com">
             </div>
             <div class="input-box">
-                <label for="passwordInput">Create Password: </label>
-                <input type="password" name="" id="passwordInput" required minlength="6" maxlength="20" placeholder="min 6 characters">
+                <label for="password">Create Password: </label>
+                <input type="password" id="password" required minlength="6" maxlength="20" placeholder="min 6 characters">
             </div>
-            <button id="registerBtn" onclick="registerUser()">Register</button>
+            <button type="submit">Register</button>
 
             <div class="register-link">
                 <p>Already have an account? <a href="Signin.html">Sign in</a></p>
@@ -40,35 +40,6 @@
     <footer>
 
     </footer>
-    <script>
-        function registerUser() {
-    
-            const usernameInput = document.getElementById("usernameInput").value;
-            const passwordInput = document.getElementById("passwordInput").value;
-            const emailInput = document.getElementById("emailInput").value;
-    
-    
-            let user = {
-                username: usernameInput,
-                password: passwordInput,
-                email: emailInput
-            }
-    
-            console.log(user);
-    
-            let userJSON = JSON.stringify(user);
-            console.log(userJSON);
-    
-            //If we got a Response, then extract the Body of the Response
-            let pretendResponse = JSON.parse(userJSON);
-    
-            console.log(pretendResponse);
-            //Then do something with the Response.
-            //Like check the data, if good, send to login page.
-    
-            alert("Successfully Registered!")
-            window.location.href = "#";
-        }
-    </script>
+    <script src="registerUser.js"></script>
 </body>
 </html>

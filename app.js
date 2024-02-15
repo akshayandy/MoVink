@@ -12,6 +12,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use("/signin", moviesRoutes);
+app.use("/signup", moviesRoutes);
 app.use("/", moviesRoutes);
 app.use("/cart", moviesRoutes);
 app.use("/cart/:movieId", moviesRoutes);

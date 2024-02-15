@@ -69,7 +69,30 @@ async function fetchCartData() {
 }
 
 async function checkoutCart() {
-    console.log("Checkout complete..!")
+    try {
+        // Fetch cart data from the backend
+        const response = await fetch('http://localhost:5432/cart');
+        const cartData = await response.json();
+
+        // Send POST request to checkout endpoint
+        const checkoutResponse = await fetch('http://localhost:5432/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cartData)
+        });
+
+        if (checkoutResponse.ok) {
+            // Checkout successful, navigate to orders page
+            alert("Order placed successfully..!");
+            window.location.href = 'Orders.html';
+        } else {
+            console.error('Failed to checkout');
+        }
+    } catch (error) {
+        console.error('Error during checkout:', error);
+    }
 }
 
 

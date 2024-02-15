@@ -3,6 +3,47 @@
 const pool = require('../db-connect');
 // const bcrypt = require('bcrypt');
 
+async function userVerify(email, password){
+    try {
+        // Perform database query to add movie to cart
+        const query = `
+            SELECT * FROM users WHERE email = $1 AND password = $2`;
+
+        const values = [email, password];
+        const result = await pool.query(query, values);
+
+        return result.rows[0]; // Return the added movie if needed
+    } catch (error) {
+        console.error('Error adding movie to cart:', error);
+        throw error;
+    }
+}
+
+// Function to Register User
+async function registerUser(name, email, password) {
+    try {
+        // Perform database query to add movie to cart
+        const query = `
+            INSERT INTO users (name, email, password)
+            VALUES ($1, $2, $3)`;
+
+        const values = [name, email, password];
+        const result = await pool.query(query, values);
+
+        return result.rows[0]; // Return the added movie if needed
+    } catch (error) {
+        console.error('Error Registering new User', error);
+        throw error;
+    }
+}
+
+// Function to check if an email is already registered
+async function isEmailRegistered(email) {
+    const query = 'SELECT * FROM users WHERE email = $1';
+    const values = [email];
+    const result = await pool.query(query, values);
+    return result.rowCount > 0;
+}
 
 //Movies
 async function selectAllMovies(){
@@ -62,6 +103,35 @@ async function removeFromCart(movieId) {
     }
 }
 
+// Function to empty the cart
+async function emptyCart() {
+    try {
+        // Perform database query to delete all records from the cart table
+        const query = `
+            DELETE FROM cart;`;
+
+        await pool.query(query);
+    } catch (error) {
+        console.error('Error emptying cart:', error);
+        throw error;
+    }
+}
+
+// Function to insert movie into orders table
+async function addOrder(movie) {
+    try {
+        // Perform database query to insert movie into orders table
+        const query = `
+            INSERT INTO orders (movie_id, title, price, rating, image)
+            VALUES ($1, $2, $3, $4, $5);`;
+
+        const values = [movie.movie_id, movie.title, movie.price, movie.rating, movie.image];
+        await pool.query(query, values);
+    } catch (error) {
+        console.error('Error adding movie to orders:', error);
+        throw error;
+    }
+}
 
 async function getOrdersData() {
     try {
@@ -96,5 +166,10 @@ module.exports = {
     getAllMovies : selectAllMovies,
     addMovie : addToCart,
     deleteMovie : removeFromCart,
-    getOrdersData : getOrdersData
+    emptyCart : emptyCart,
+    addOrder : addOrder,
+    isEmailRegistered: isEmailRegistered,
+    registerUser : registerUser,
+    getOrdersData : getOrdersData,
+    userVerify : userVerify
 }

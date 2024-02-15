@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const main = document.getElementById('main');
     fetchMoviesData(); // Fetch movie data when the DOM is loaded
 
     async function fetchMoviesData() {
@@ -7,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Fetch movie data from the backend endpoint
             const response = await fetch('http://localhost:5432/');
             const moviesData = await response.json();
+            
+            const main = document.getElementById('main');
 
             // Dynamically generate HTML elements for each movie
             moviesData.forEach(movie => {
@@ -46,6 +47,7 @@ async function addToCart(title, price, rating, image) {
 
         if (response.ok) {
             // Movie added successfully, update UI or show a message
+            alert("Movie added to Cart..!");
             console.log('Movie added to cart successfully!');
         } else {
             // Movie addition failed, handle error or show a message
