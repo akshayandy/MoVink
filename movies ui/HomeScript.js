@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function fetchMoviesData() {
         try {
             // Fetch movie data from the backend endpoint
-            const response = await fetch('http://localhost:5432/');
+            const response = await fetch('http://localhost:2000/');
             const moviesData = await response.json();
             
             const main = document.getElementById('main');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function addToCart(title, price, rating, image) {
     try {
         // Send a POST request to add movie to cart
-        const response = await fetch('http://localhost:5432/cart', {
+        const response = await fetch('http://localhost:3000/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

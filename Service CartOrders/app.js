@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const moviesRoutes = require("./routes/cart.route")
-const port = 5432;
+const cartRoutes = require("./routes/cart.route")
+const port = 3000;
 const app = express();
 
 
@@ -12,8 +12,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/cart", moviesRoutes);
-app.use("/cart/:movieId", moviesRoutes);
+app.use("/", cartRoutes);
+app.use("/:movieId", cartRoutes);
+
 
 app.listen(port, ()=>{
     console.log(`movies-app is listening on port ${port}`);

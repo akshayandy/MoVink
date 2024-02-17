@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function fetchOrdersData() {
     try {
         // Fetch cart data from the backend endpoint
-        const response = await fetch('http://localhost:5432/orders');
+        const response = await fetch('http://localhost:4000/');
         const ordersData = await response.json();
 
         // Get the cart items container

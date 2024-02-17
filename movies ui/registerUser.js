@@ -7,7 +7,7 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
 
 
     try {
-        const response = await fetch('http://localhost:5432/signup', {
+        const response = await fetch('http://localhost:1000/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

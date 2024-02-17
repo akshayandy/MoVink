@@ -5,7 +5,7 @@ document.getElementById('signin-form').addEventListener('submit', async (e) => {
         const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('http://localhost:5432/signin', {
+        const response = await fetch('http://localhost:1000/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

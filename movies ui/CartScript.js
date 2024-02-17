@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function fetchCartData() {
     try {
         // Fetch cart data from the backend endpoint
-        const response = await fetch('http://localhost:5432/cart');
+        const response = await fetch('http://localhost:3000/');
         const cartData = await response.json();
 
         // Get the cart items container
@@ -53,7 +53,7 @@ async function fetchCartData() {
  async function removeFromCart(movieId) {
     try {
         // Send request to remove movie from cart
-        const response = await fetch(`http://localhost:5432/cart/${movieId}`, {
+        const response = await fetch(`http://localhost:3000/${movieId}`, {
             method: 'DELETE'
         });
 
@@ -71,11 +71,11 @@ async function fetchCartData() {
 async function checkoutCart() {
     try {
         // Fetch cart data from the backend
-        const response = await fetch('http://localhost:5432/cart');
+        const response = await fetch('http://localhost:3000/');
         const cartData = await response.json();
 
         // Send POST request to checkout endpoint
-        const checkoutResponse = await fetch('http://localhost:5432/orders', {
+        const checkoutResponse = await fetch('http://localhost:4000/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

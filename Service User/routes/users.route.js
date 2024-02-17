@@ -4,7 +4,7 @@ const usrDAO = require('../dao/users.dao');
 
 
 // Handle sign-in POST requests
-usersRoutes.post('/signin', async (req, res) => {
+usersRoutes.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     try {

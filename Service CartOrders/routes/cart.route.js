@@ -1,13 +1,13 @@
 const express = require('express');
-const moviesRoutes = express.Router();
-const movDAO = require('../dao/movies.dao');
+const cartRoutes = express.Router();
+const carDAO = require('../dao/cart.dao');
 
 
 // Add a route to fetch cart data
-moviesRoutes.get('/cart', async (req, res) => {
+cartRoutes.get('/', async (req, res) => {
     try {
         // Your code to fetch cart data from the database
-        const cartData = await movDAO.getCartData(); // Assuming you have a function to fetch cart data in your DAO
+        const cartData = await carDAO.getCartData(); // Assuming you have a function to fetch cart data in your DAO
         
         // Send the cart data in the response
         res.status(200).json(cartData);
@@ -18,13 +18,13 @@ moviesRoutes.get('/cart', async (req, res) => {
 });
 
 // Route to add movie to cart
-moviesRoutes.post('/cart', async (req, res) => {
+cartRoutes.post('/', async (req, res) => {
     try {
         // Extract movie details from request body
         const {title, price, rating, image } = req.body;
 
         // Add movie to cart
-        const result = await movDAO.addMovie(title, price, rating, image);
+        const result = await carDAO.addMovie(title, price, rating, image);
 
         res.status(201).json(result);
     } catch (error) {
@@ -35,13 +35,13 @@ moviesRoutes.post('/cart', async (req, res) => {
 
 
 // Route to remove movie from cart
-moviesRoutes.delete('/cart/:movieId', async (req, res) => {
+cartRoutes.delete('/:movieId', async (req, res) => {
     try {
         // Extract movie ID from request params
         const movieId = req.params.movieId;
 
         // Remove movie from cart
-        await movDAO.deleteMovie(movieId);
+        await carDAO.deleteMovie(movieId);
 
         res.status(200).json({ message: 'Movie removed from cart successfully' });
     } catch (error) {
@@ -50,4 +50,4 @@ moviesRoutes.delete('/cart/:movieId', async (req, res) => {
     }
 });
 
-module.exports = moviesRoutes
+module.exports = cartRoutes

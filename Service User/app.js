@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const usersRoutes = require("./routes/users.route")
-const port = 5432;
+const port = 1000;
 const app = express();
 
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/signin", usersRoutes);
+app.use("/", usersRoutes);
 app.use("/signup", usersRoutes);
 
 app.listen(port, ()=>{
