@@ -1,0 +1,128 @@
+*{
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 700;
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body{
+    background: #424769;
+    font-family: 'Arial', sans-serif;
+}
+
+h1{
+    text-align: center;
+    color: #fff;
+}
+
+.navigation{
+    padding: 2px;
+    background: #7077A1;
+    border-radius: 10px;   
+}
+
+.navigation ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+.navigation ul a{
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.navigation ul a:hover{
+    color: #F6B17A;
+}
+
+.movie{
+    width: 300px;
+    height: auto;
+    margin: 1rem;
+    background-color: #7077A1;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.movie:hover{
+    transform: scale(1.025);
+    transition: transform 0.2s ease-in-out;
+}
+
+.movie img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.movie-info{
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* Stack movie data vertically */
+    flex-grow: 1;
+}
+
+.movie-info h3{
+    padding-left: 10px;
+    margin: 0 0 0.25rem; 
+    white-space: normal;
+    width: 100%;
+}
+
+.movie-info span{
+    background-color: #7077A1;
+    padding-left: 10px;
+    border-radius: bold;
+    border-radius: 3px;
+    margin-right: 0.5rem; 
+}
+
+.movie-info span i{
+    color: gold;
+    padding-right: 5px;
+}
+
+.movie-info span.green{
+    color: lightgreen;
+}
+.movie-info span.orange{
+    color: orange;
+}
+
+.movie-info span.red{
+    color: red;
+}
+
+.movie-info button{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #ffa600;
+    color: #fff;
+    padding: 5px 10px;
+    margin-top: auto; 
+    align-self: center;
+}
+
+.movie button:hover {
+    background-color: #ff8800;
+}
+
+.movie .price{
+    color: #eee;
+    text-align: center;
+    font-size: larger;
+    letter-spacing: 0.5px
+}
+
