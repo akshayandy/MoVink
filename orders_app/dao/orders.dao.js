@@ -32,7 +32,21 @@ async function getOrdersData() {
     }
 }
 
+async function emptyCartData() {
+    try {
+      const query = `
+              DELETE FROM cart;`;
+      const result = await pool.query(query);
+  
+      return result.rows; // Return the cart data
+    } catch (error) {
+      console.error("Error fetching cart data:", error);
+      throw error;
+    }
+  }
+
 module.exports = {
-    addOrder : addOrder,
-    getOrdersData : getOrdersData
+    addOrder,
+    getOrdersData,
+    emptyCartData
 }

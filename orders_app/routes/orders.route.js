@@ -7,12 +7,14 @@ ordersRoutes.post('/', async (req, res) => {
     try {
         // Extract cart data from the request body
         const cartData = req.body;
-
+        
         // Insert each movie in the cart into the orders table
         for (const movie of cartData) {
             await ordDAO.addOrder(movie);
         }
 
+        await ordDAO.emptyCartData();
+        
         res.status(200).json({ message: 'Checkout successful' });
     } catch (error) {
         console.error('Error during checkout:', error);
